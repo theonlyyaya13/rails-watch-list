@@ -2,15 +2,13 @@
 
 <h2>Movies in this list:</h2>
 <ul>
-  <% @bookmarks.each do |bookmark| %>
+  <% @list.bookmarks.each do |bookmark| %>
     <li>
       <strong><%= bookmark.movie.title %></strong>: <%= bookmark.comment %>
-      <%= link_to 'Remove', list_bookmark_path(@list, bookmark), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Remove', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
     </li>
   <% end %>
 </ul>
 
-<h2>Add a movie</h2>
-<%= render 'bookmarks/form', list: @list %>
-
 <%= link_to 'Back to lists', lists_path %>
+<%= link_to 'Add a Bookmark', new_list_bookmark_path(@list) %>
